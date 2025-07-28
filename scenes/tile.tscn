@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvl4qm12difkr"]
+
+[ext_resource type="Script" uid="uid://cy88873l3r778" path="res://scenes/Tile.cs" id="1_3dk36"]
+[ext_resource type="Script" uid="uid://hdpk7fl5srsr" path="res://scenes/TileButton.cs" id="3_jy7pm"]
+
+[sub_resource type="Theme" id="Theme_3dk36"]
+default_font_size = 42
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywnoi"]
+bg_color = Color(0, 0.235294, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy7pm"]
+bg_color = Color(0, 0, 0.235294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="Tile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3dk36")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+theme = SubResource("Theme_3dk36")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ywnoi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy7pm")
+text = "W"
+script = ExtResource("3_jy7pm")

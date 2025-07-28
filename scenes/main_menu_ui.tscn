@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt5k06dn5rf4p"]
+
+[ext_resource type="LabelSettings" uid="uid://16bvxjv8o76i" path="res://styles/default_label_setting.tres" id="1_ag3nm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p3a5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0evo5"]
+font_size = 48
+shadow_size = 0
+shadow_color = Color(1, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7b2rg"]
+font_size = 48
+shadow_size = 0
+shadow_color = Color(1, 0, 0, 0)
+
+[node name="MainMenuUi" type="CanvasLayer"]
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5p3a5")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 52
+text = "Letter Drop"
+label_settings = ExtResource("1_ag3nm")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Single Player"
+label_settings = SubResource("LabelSettings_0evo5")
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_7b2rg")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+label_settings = SubResource("LabelSettings_7b2rg")
+horizontal_alignment = 1

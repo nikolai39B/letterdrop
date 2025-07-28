@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b78fyrmjui4ad"]
+
+[ext_resource type="Script" uid="uid://b2uikgb76bmaa" path="res://scenes/Field.cs" id="1_ttalb"]
+[ext_resource type="Script" uid="uid://dtb6axeuef6wx" path="res://scenes/FieldOutline.cs" id="2_lptdg"]
+
+[node name="Field" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ttalb")
+NumRows = 7
+NumColumns = 7
+
+[node name="FieldOutline" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 250, 50, 250, 50, 275, 100, 275, 100, 250, 150, 250, 150, 275, 200, 275, 200, 250, 250, 250, 250, 0)
+width = 1.0
+default_color = Color(0, 0, 1, 1)
+script = ExtResource("2_lptdg")

@@ -1,0 +1,31 @@
+# Godot-specific
+.import/
+.export/
+export.cfg
+export_presets.cfg
+
+# Godot 4: .godot/ contains user-specific/editor data
+.godot/
+
+# Mono (C#) specific
+.mono/
+data_*/
+mono_crash.*
+
+# C# build artifacts
+*.csproj
+*.sln
+*.user
+*.suo
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.pidb
+*.cache
+*.vs/
+
+# Misc
+*.db
+*.import
+*.tmp
