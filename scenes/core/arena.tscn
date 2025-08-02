@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://78v1hu1c7mrt"]
 
-[ext_resource type="PackedScene" uid="uid://b78fyrmjui4ad" path="res://scenes/field.tscn" id="1_e05a3"]
+[ext_resource type="PackedScene" uid="uid://b78fyrmjui4ad" path="res://scenes/core/field.tscn" id="1_e05a3"]
 [ext_resource type="PackedScene" uid="uid://b33oqo6g6mfvf" path="res://scenes/background.tscn" id="1_wl4x5"]
 
 [node name="Arena" type="Node2D"]
@@ -8,4 +8,4 @@
 [node name="Background" parent="." instance=ExtResource("1_wl4x5")]
 
 [node name="Field" parent="." instance=ExtResource("1_e05a3")]
-TileSize = 75.0
+TileSize = 100.0

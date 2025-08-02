@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://by4ojiu51pwfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ahok"]
+bg_color = Color(0, 0, 0.235294, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w3us"]
+bg_color = Color(0, 0.13357, 0.732535, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_benl5"]
+bg_color = Color(0, 0, 0.235294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ravt5"]
+bg_color = Color(0, 0, 0.235294, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djdm4"]
+bg_color = Color(0.943195, 0.0704677, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.741385, 0.741385, 0.741385, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqedk"]
+bg_color = Color(0.485633, 0.649773, 0.995898, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[resource]
+Button/font_sizes/font_size = 30
+TileButton/base_type = &"Button"
+TileButton/colors/font_color = Color(1, 1, 1, 1)
+TileButton/font_sizes/font_size = 64
+TileButton/styles/disabled = SubResource("StyleBoxFlat_6ahok")
+TileButton/styles/hover = SubResource("StyleBoxFlat_5w3us")
+TileButton/styles/hover_pressed = SubResource("StyleBoxFlat_benl5")
+TileButton/styles/normal = SubResource("StyleBoxFlat_ravt5")
+TileButton/styles/pending = SubResource("StyleBoxFlat_djdm4")
+TileButton/styles/pressed = SubResource("StyleBoxFlat_yqedk")

@@ -6,18 +6,12 @@ using System.Collections.Generic;
 public partial class Field : Control
 {
     //-- OVERRIDES
-
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-
-        //NumRows = 1;
-        //NumColumns = 3;
-        TileSize = 100;
-        Position = new Vector2(10 + GapSize, 10 + GapSize + TileSize / 2);
-    }
     public override void _Ready()
 	{
+        // Center the field in the left half of the viewport
+        Vector2 viewportSize = GetViewportRect().Size;
+        Size = new Vector2(NumRows * TileSize, (NumColumns + 1) * TileSize);
+        Position = new Vector2(viewportSize.X / 4 - Size.X / 2, viewportSize.Y / 2 - Size.Y / 2);
 
         // Create the columns
         ConfigureColumns();
@@ -27,7 +21,7 @@ public partial class Field : Control
         AddTile('Z', 1);
         AddTile('Y', 1);
         AddTile('C', 2);
-        AddTile('D', 3);
+        //AddTile('D', 3);
         AddTile('X', 4);
         AddTile('M', 5);
         AddTile('N', 5);
@@ -46,55 +40,6 @@ public partial class Field : Control
         AddTile('7', 6);
     }
 
-    public override void _Draw()
-    {
-        base._Draw();
-
-        // Add the left wall
-        List<Vector2> points = new List<Vector2>();
-        float xCurr = 0;
-        float yCurr = 0;
-        points.Add(new Vector2(xCurr - GapSize, yCurr + GapSize));
-        yCurr += NumRows * TileSize;
-        points.Add(new Vector2(xCurr - GapSize, yCurr + GapSize));
-        
-        // Add the floor, alternating between high and low tiles
-        for (int ii = 0; ii < NumColumns; ++ii)
-        {
-            // Get the new x position
-            xCurr += TileSize;
-        
-            // Draw the appropriate floor based on whether this is a high or low tile
-            bool isHighTile = ii % 2 == 0;
-            if (isHighTile)
-            {
-                // If this is the last column, extend the floor past the tile one gap length
-                if (ii == NumColumns - 1)
-                {
-                    points.Add(new Vector2(xCurr + GapSize, yCurr + GapSize));
-                }
-        
-                // Otherwise, cut the floor off one gap length and draw down
-                else
-                {
-                    points.Add(new Vector2(xCurr - GapSize, yCurr + GapSize));
-                    points.Add(new Vector2(xCurr - GapSize, yCurr + TileSize / 2 + GapSize));
-                }
-            }
-            else
-            {
-                // Extend the floor past the tile one gap length and draw up
-                points.Add(new Vector2(xCurr + GapSize, yCurr + TileSize / 2 + GapSize));
-                points.Add(new Vector2(xCurr + GapSize, yCurr + GapSize));
-            }
-        }
-        
-        // Add the right wall
-        yCurr -= NumRows * TileSize;
-        points.Add(new Vector2(xCurr + GapSize, yCurr + GapSize));
-        DrawPolyline(points.ToArray(), new Color("white"), 1);
-    }
-
 
     //-- CONFIGURATION
 
@@ -103,22 +48,22 @@ public partial class Field : Control
     /// </summary>
     private void ConfigureColumns()
     {
-        // Calculate the height of the field
-        float fieldHeight = NumRows * TileSize;
-
         // Create the columns
         bool isHighColumn = false;
         for (int ii = 0; ii < NumColumns; ii++, isHighColumn = !isHighColumn)
         {
             // Create the column
             int capacity = isHighColumn ? NumRows + 1 : NumRows;
-            FieldColumn column = FieldColumn.Create(capacity, ii);
+            FieldColumn column = FieldColumn.Create(capacity);
             AddChild(column);
             Columns.Add(column);
 
+            // Set a descriptive name
+            Name = $"Column{ii}";
+
             // Place the column
-            float columnX = ii * TileSize + TileSize / 2;
-            float columnY = fieldHeight + (isHighColumn ? TileSize / 2 : 0);
+            float columnX = ii * TileSize;
+            float columnY = isHighColumn ? 0 : TileSize / 2;
             column.Position = new Vector2(columnX, columnY);
         }
     }
@@ -132,17 +77,17 @@ public partial class Field : Control
     /// <param name="letter">The tile's letter</param>
     /// <param name="column">The tile's column</param>
     /// <returns>The newly created tile</returns>
-    public Tile AddTile(char letter, int column)
+    public void AddTile(char letter, int column)
 	{
         // Validate
         if (DebugUtils.AssertFalse(!IsValidCharacter(letter)) ||
             DebugUtils.AssertFalse(column >= NumColumns))
         {
-            return null;
+            return;
         }
 
         // Add the tile
-        return Columns[column].DropTile(letter);
+        Columns[column].DropTile(letter);
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cc8eb5ht7e8af"]
 
-[ext_resource type="Script" uid="uid://7kuhn8x7m4bo" path="res://scenes/FieldColumn.cs" id="1_ajdnc"]
+[ext_resource type="Script" uid="uid://7kuhn8x7m4bo" path="res://scenes/core/FieldColumn.cs" id="1_ajdnc"]
 
 [node name="FieldColumn" type="Control"]
 layout_mode = 3

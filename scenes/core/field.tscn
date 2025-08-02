@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b78fyrmjui4ad"]
+
+[ext_resource type="Script" uid="uid://b2uikgb76bmaa" path="res://scenes/core/Field.cs" id="1_ttalb"]
+
+[node name="Field" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ttalb")
+NumRows = 7
+NumColumns = 7
