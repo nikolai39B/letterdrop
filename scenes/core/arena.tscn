@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://78v1hu1c7mrt"]
+[gd_scene load_steps=5 format=3 uid="uid://78v1hu1c7mrt"]
 
+[ext_resource type="Script" uid="uid://cnk5yq21dsaf4" path="res://scenes/core/Arena.cs" id="1_11veh"]
 [ext_resource type="PackedScene" uid="uid://b78fyrmjui4ad" path="res://scenes/core/field.tscn" id="1_e05a3"]
 [ext_resource type="PackedScene" uid="uid://b33oqo6g6mfvf" path="res://scenes/background.tscn" id="1_wl4x5"]
+[ext_resource type="PackedScene" uid="uid://ihv3gi2xter0" path="res://scenes/core/queue.tscn" id="3_yvung"]
 
 [node name="Arena" type="Node2D"]
+script = ExtResource("1_11veh")
 
 [node name="Background" parent="." instance=ExtResource("1_wl4x5")]
 
 [node name="Field" parent="." instance=ExtResource("1_e05a3")]
 TileSize = 100.0
+
+[node name="Queue" parent="." instance=ExtResource("3_yvung")]
+offset_left = 1090.0
+offset_top = 200.0
+offset_right = 1090.0
+offset_bottom = 200.0

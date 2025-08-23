@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://ihv3gi2xter0"]
+
+[ext_resource type="Script" uid="uid://ccoak2s2enby" path="res://scenes/core/Queue.cs" id="1_2tsvr"]
+[ext_resource type="Theme" uid="uid://l2vpsu13nluj" path="res://styles/base_theme.tres" id="1_rvarw"]
+
+[node name="Queue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2tsvr")
+
+[node name="Tile1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 120.0
+offset_bottom = 120.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelLarge"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 30.0
+offset_right = 195.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 30.0
+offset_right = 270.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 30.0
+offset_right = 345.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 30.0
+offset_right = 420.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 30.0
+offset_right = 495.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 30.0
+offset_right = 570.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remaining" type="Label" parent="."]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 30.0
+offset_right = 680.0
+offset_bottom = 95.0
+theme = ExtResource("1_rvarw")
+theme_type_variation = &"LetterLabelSmall"
+text = "+18"
+horizontal_alignment = 1
+vertical_alignment = 1

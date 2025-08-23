@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://btqysmb0qk87o"]
 
-[ext_resource type="PackedScene" uid="uid://dvl4qm12difkr" path="res://scenes/core/tile.tscn" id="1_p2tdl"]
+[ext_resource type="PackedScene" uid="uid://dvl4qm12difkr" path="res://scenes/core/field_tile.tscn" id="1_p2tdl"]
 
 [node name="TilePreview" type="Control"]
 layout_mode = 3
@@ -38,8 +38,6 @@ offset_left = 286.0
 offset_top = 35.0
 offset_right = 386.0
 offset_bottom = 135.0
-toggle_mode = true
-button_pressed = true
 TileState = 3
 
 [node name="TilePending" parent="." instance=ExtResource("1_p2tdl")]

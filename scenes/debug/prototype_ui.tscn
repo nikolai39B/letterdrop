@@ -1,0 +1,617 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbx8qsq1kjct2"]
+
+[ext_resource type="PackedScene" uid="uid://b78fyrmjui4ad" path="res://scenes/core/field.tscn" id="1_7ob3a"]
+[ext_resource type="PackedScene" uid="uid://cc8eb5ht7e8af" path="res://scenes/core/field_column.tscn" id="2_6p8k1"]
+[ext_resource type="PackedScene" uid="uid://dvl4qm12difkr" path="res://scenes/core/field_tile.tscn" id="3_mkqc0"]
+[ext_resource type="Theme" uid="uid://l2vpsu13nluj" path="res://styles/base_theme.tres" id="4_6p8k1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkqc0"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnhl8"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_15i7v"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_6p8k1"]
+font_size = 32
+
+[node name="PrototypeUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Field" parent="." instance=ExtResource("1_7ob3a")]
+offset_left = 130.0
+offset_top = 90.0
+offset_right = 830.0
+offset_bottom = 990.0
+TileSize = 100.0
+
+[node name="FieldColumn" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_top = 50.0
+offset_bottom = 50.0
+
+[node name="FieldTile" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile2" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile3" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile4" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile5" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile6" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile7" parent="Field/FieldColumn" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn2" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 100.0
+offset_right = 100.0
+
+[node name="FieldTile" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 705.0
+offset_right = 95.0
+offset_bottom = 795.0
+
+[node name="FieldTile2" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile3" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile4" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile5" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile6" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile7" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile8" parent="Field/FieldColumn2" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn3" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 50.0
+
+[node name="FieldTile" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile2" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile3" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile4" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile5" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile6" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile7" parent="Field/FieldColumn3" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn4" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 300.0
+offset_right = 300.0
+
+[node name="FieldTile" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 705.0
+offset_right = 95.0
+offset_bottom = 795.0
+
+[node name="FieldTile2" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile3" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile4" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile5" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile6" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile7" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile8" parent="Field/FieldColumn4" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn5" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 50.0
+
+[node name="FieldTile" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile2" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile3" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile4" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile5" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile6" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile7" parent="Field/FieldColumn5" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn6" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 500.0
+offset_right = 500.0
+
+[node name="FieldTile" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 705.0
+offset_right = 95.0
+offset_bottom = 795.0
+
+[node name="FieldTile2" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile3" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile4" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile5" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile6" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile7" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile8" parent="Field/FieldColumn6" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="FieldColumn7" parent="Field" instance=ExtResource("2_6p8k1")]
+offset_left = 600.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 50.0
+
+[node name="FieldTile" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 95.0
+offset_bottom = 695.0
+
+[node name="FieldTile2" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 505.0
+offset_right = 95.0
+offset_bottom = 595.0
+
+[node name="FieldTile3" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 95.0
+offset_bottom = 495.0
+
+[node name="FieldTile4" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 95.0
+offset_bottom = 395.0
+
+[node name="FieldTile5" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 205.0
+offset_right = 95.0
+offset_bottom = 295.0
+
+[node name="FieldTile6" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 95.0
+offset_bottom = 195.0
+
+[node name="FieldTile7" parent="Field/FieldColumn7" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 95.0
+offset_bottom = 95.0
+
+[node name="Score" type="Label" parent="Field"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_6p8k1")
+text = "805"
+label_settings = SubResource("LabelSettings_mkqc0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Queue" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1090.0
+offset_top = 200.0
+offset_right = 1090.0
+offset_bottom = 200.0
+
+[node name="Title" type="Label" parent="Queue"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 700.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_6p8k1")
+text = "Queue"
+label_settings = SubResource("LabelSettings_wnhl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpNextTile" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 80.0
+offset_right = 120.0
+offset_bottom = 195.0
+pivot_offset = Vector2(57.5, 57.5)
+theme_type_variation = &"QueueTileLarge"
+
+[node name="QueueTile" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 105.0
+offset_right = 195.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="QueueTile2" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 105.0
+offset_right = 270.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="QueueTile3" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 105.0
+offset_right = 345.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="QueueTile4" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 105.0
+offset_right = 420.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="QueueTile5" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 105.0
+offset_right = 495.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="QueueTile6" parent="Queue" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 105.0
+offset_right = 570.0
+offset_bottom = 170.0
+theme_type_variation = &"QueueTileSmall"
+
+[node name="RemainingTiles" type="Label" parent="Queue"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 580.0
+offset_top = 105.0
+offset_right = 680.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_6p8k1")
+text = "+18"
+label_settings = SubResource("LabelSettings_15i7v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Submission" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1090.0
+offset_top = 600.0
+offset_right = 1090.0
+offset_bottom = 600.0
+
+[node name="Title" type="Label" parent="Submission"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 700.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_6p8k1")
+text = "Submission"
+label_settings = SubResource("LabelSettings_wnhl8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Submission" parent="Submission" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 80.0
+offset_right = 695.0
+offset_bottom = 170.0
+pivot_offset = Vector2(0, 0)
+text = "CAPYBARA"
+
+[node name="Score" type="Label" parent="Submission"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 180.0
+offset_right = 345.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_6p8k1")
+text = "126"
+label_settings = SubResource("LabelSettings_6p8k1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Submit" parent="Submission" instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 180.0
+offset_right = 695.0
+offset_bottom = 245.0
+pivot_offset = Vector2(0, 0)
+theme_type_variation = &"QueueTileSmall"
+text = "Submit"
+
+[node name="Menu" parent="." instance=ExtResource("3_mkqc0")]
+layout_mode = 0
+offset_left = 1570.0
+offset_top = 10.0
+offset_right = 1910.0
+offset_bottom = 75.0
+pivot_offset = Vector2(0, 0)
+theme_type_variation = &"QueueTileSmall"
+text = "Menu"

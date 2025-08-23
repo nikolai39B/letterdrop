@@ -15,8 +15,8 @@ namespace LetterDrop
 		NULL = 0,
 
 		//-- FIELD
-		TILE,
-		FIELD_COLUMN
+		FIELD_COLUMN,
+        FIELD_TILE
 	}
 
 	/// <summary>
@@ -30,8 +30,8 @@ namespace LetterDrop
 		{
             ScenePaths = new Dictionary<SceneType, SceneLoader>
             {
-				{ SceneType.TILE, new SceneLoader("res://scenes/tile.tscn") },
-                { SceneType.FIELD_COLUMN, new SceneLoader("res://scenes/field_column.tscn") }
+                { SceneType.FIELD_COLUMN, new SceneLoader("res://scenes/core/field_column.tscn") },
+                { SceneType.FIELD_TILE, new SceneLoader("res://scenes/core/field_tile.tscn") }
             };
 
         }

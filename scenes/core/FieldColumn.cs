@@ -38,17 +38,6 @@ public partial class FieldColumn : Control
         InitializeTiles();
     }
 
-    public override void _Draw()
-    {
-        base._Draw();
-
-        //Vector2[] bottomPoints = { 
-        //    new Vector2(0, 0),
-        //    new Vector2(ParentField.TileSize, 0),
-        //};
-        //DrawPolyline(bottomPoints, new Color("pink"), 4);
-    }
-
 
     //-- TILES
 
@@ -68,7 +57,7 @@ public partial class FieldColumn : Control
     public void DropTile(char letter)
     {
         // Get the pending tile
-        Tile currPendingTile = PendingTile;
+        FieldTile currPendingTile = PendingTile;
         if (DebugUtils.AssertFalse(currPendingTile == null))
         {
             return;
@@ -76,14 +65,15 @@ public partial class FieldColumn : Control
 
         // Configure the pending tile
         currPendingTile.Letter = letter;
-        currPendingTile.TileState = Tile.State.Active;
+        currPendingTile.TileState = FieldTile.State.Active;
+        currPendingTile.ButtonPressed = false;
         ActiveTilesCount++;
 
         // Set the next tile as pending
-        Tile nextPendingTile = PendingTile;
+        FieldTile nextPendingTile = PendingTile;
         if (nextPendingTile != null)
         {
-            nextPendingTile.TileState = Tile.State.Pending;
+            nextPendingTile.TileState = FieldTile.State.Pending;
         }
     }
 
@@ -93,31 +83,109 @@ public partial class FieldColumn : Control
         for (int ii = 0; ii < Capacity; ii++)
         {
             // Create and add the tile
-            Tile tile = Tile.Create();
+            FieldTile tile = FieldTile.Create();
             if (DebugUtils.AssertFalse(tile == null))
             {
                 continue;
             }
-            AddChild(tile);
-            Tiles.Add(tile);
-            TotalTiles++;
+            AddTile(tile);
 
             // Set a descriptive name
             tile.Name = $"Tile{TotalTiles}";
 
             // Configure the tile
             tile.Letter = null;
-            tile.TileState = ii == 0 ? Tile.State.Pending : Tile.State.Disabled;
-            
+            tile.TileState = ii == 0 ? FieldTile.State.Pending : FieldTile.State.Disabled;
 
-            // Place the tile
-            Field field = ParentField;
-            float width = field.TileSize - field.GapSize * 2;
-            tile.Size = new Vector2(width, width);
-            tile.PivotOffset = new Vector2(width / 2, width / 2);
+            // Set the tile placement
+            Field field = Field;
             tile.Position = new Vector2(field.GapSize, (Capacity - Tiles.Count) * field.TileSize + field.GapSize);
         }
     }
+
+    private void OnTilePressed(FieldTile tile)
+    {
+        // Handle pending tiles
+        if (tile.TileState == FieldTile.State.Pending)
+        {
+            // Drop a tile from the queue
+            char? letter = Arena.Instance?.Queue?.PopNextTile();
+            if (letter != null)
+            {
+                DropTile(letter.Value);
+            }
+        }
+
+        // Handle active tiles
+        else if (tile.TileState == FieldTile.State.Active)
+        {
+            // Select the tile
+            tile.TileState = FieldTile.State.Selected;
+
+            // TODO only if no tiles selected or if adjacent to a selected tile
+        }
+
+        // Handle selected tiles
+        else if (tile.TileState != FieldTile.State.Disabled)
+        {
+            // Deselect the tile
+            tile.TileState = FieldTile.State.Selected;
+
+            // TODO deselect 
+        }
+    }
+
+    private void AddTile(FieldTile tile)
+    {
+        // Add the child
+        AddChild(tile);
+        Tiles.Add(tile);
+        TotalTiles++;
+
+        //Action<>
+        //
+        //// Register the button pressed signal
+        //var onTilePressed = () => { OnTilePressed(tile); };
+        //_onTilePressedDelegates[tile] = onTilePressed;
+        //tile.Pressed += onTilePressed;
+
+        // TODO: figure out the event handling here. This is not completely safe if the column gets destroyed before the tile (which probably won't happen but still...)
+
+        var err = tile.Connect(FieldTile.SignalName.Pressed, Callable.From(() => { OnTilePressed(tile); }));
+        var err2 = tile.Connect(FieldTile.SignalName.Pressed, Callable.From((int x) => { OnTilePressed(tile); return ""; }));
+
+        //var t = tile.GetType();
+        //var ev = t.GetEvent("Pressed");
+        //ev.AddEventHandler(tile, () => { OnTilePressed(tile); });
+        //
+        ////var ev = tile.Pressed;
+        //
+        //_delegates[tile].Add(new EventRegistrant(, () => { OnTilePressed(tile); }))
+
+        int x = 0;
+        x++;
+    }
+    //private Dictionary<Node, Tuple<Action> _delegates = new Dictionary<FieldTile, Action>();
+
+    //private Dictionary<FieldTile, List<IEventRegistrant>> _delegates = new Dictionary<FieldTile, List<IEventRegistrant>>();
+
+    //private void OnTileStateChanged(FieldTile tile, FieldTile.State oldState, FieldTile.State newState)
+    //{
+    //    // Handle pending...
+    //    if (oldState == FieldTile.State.Pending)
+    //    {
+    //        // ...to active
+    //        if (newState == FieldTile.State.Active)
+    //        {
+    //            // Drop a tile from the queue
+    //            char? letter = Arena.Instance?.Queue?.PopNextTile();
+    //            if (letter != null)
+    //            {
+    //                DropTile(letter.Value);
+    //            }
+    //        }
+    //    }
+    //}
 
 
     //-- CONSTANTS
@@ -138,19 +206,19 @@ public partial class FieldColumn : Control
     /// <summary>
     /// The parent field
     /// </summary>
-    public Field ParentField { get => GetParent<Field>(); }
+    public Field Field { get => GetParent<Field>(); }
 
     /// <summary>
     /// The stack of tiles in the column, ordered from the bottom of the column
     /// </summary>
-    public List<Tile> Tiles { get; private set; } = new List<Tile>();
+    public List<FieldTile> Tiles { get; private set; } = new List<FieldTile>();
 
     /// <summary>
-    /// The number of tiles in the column that are active.
+    /// The number of tiles in the column that are active
     /// </summary>
     public int ActiveTilesCount { get; private set; } = 0;
 
-    private Tile PendingTile
+    private FieldTile PendingTile
     {
         get => IsFull() ? null : Tiles[ActiveTilesCount];
     }

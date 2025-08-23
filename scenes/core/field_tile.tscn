@@ -1,12 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc0l72yqdcild"]
+[gd_scene load_steps=3 format=3 uid="uid://dvl4qm12difkr"]
 
-[ext_resource type="PackedScene" uid="uid://dvl4qm12difkr" path="res://scenes/core/tile.tscn" id="2_7i7iw"]
+[ext_resource type="Theme" uid="uid://l2vpsu13nluj" path="res://styles/base_theme.tres" id="1_rp2xm"]
+[ext_resource type="Script" uid="uid://hdpk7fl5srsr" path="res://scenes/core/FieldTile.cs" id="3_jy7pm"]
 
-[node name="FieldTile" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Tile" parent="." instance=ExtResource("2_7i7iw")]
-layout_mode = 0
+[node name="FieldTile" type="Button"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+theme = ExtResource("1_rp2xm")
+theme_type_variation = &"LetterButton"
+text = "W"
+script = ExtResource("3_jy7pm")

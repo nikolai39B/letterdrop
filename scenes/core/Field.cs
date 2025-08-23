@@ -7,7 +7,7 @@ public partial class Field : Control
 {
     //-- OVERRIDES
     public override void _Ready()
-	{
+    {
         // Center the field in the left half of the viewport
         Vector2 viewportSize = GetViewportRect().Size;
         Size = new Vector2(NumRows * TileSize, (NumColumns + 1) * TileSize);
@@ -17,27 +17,27 @@ public partial class Field : Control
         ConfigureColumns();
 
         // Debug
-        AddTile('A', 0);
-        AddTile('Z', 1);
-        AddTile('Y', 1);
-        AddTile('C', 2);
-        //AddTile('D', 3);
-        AddTile('X', 4);
-        AddTile('M', 5);
-        AddTile('N', 5);
-        AddTile('O', 5);
-        AddTile('P', 5);
-        AddTile('Q', 5);
-        AddTile('R', 5);
-        AddTile('S', 5);
-        AddTile('T', 5);
-        AddTile('1', 6);
-        AddTile('2', 6);
-        AddTile('3', 6);
-        AddTile('4', 6);
-        AddTile('5', 6);
-        AddTile('6', 6);
-        AddTile('7', 6);
+        //AddTile('A', 0);
+        //AddTile('Z', 1);
+        //AddTile('Y', 1);
+        //AddTile('C', 2);
+        ////AddTile('D', 3);
+        //AddTile('X', 4);
+        //AddTile('M', 5);
+        //AddTile('N', 5);
+        //AddTile('O', 5);
+        //AddTile('P', 5);
+        //AddTile('Q', 5);
+        //AddTile('R', 5);
+        //AddTile('S', 5);
+        //AddTile('T', 5);
+        //AddTile('1', 6);
+        //AddTile('2', 6);
+        //AddTile('3', 6);
+        //AddTile('4', 6);
+        //AddTile('5', 6);
+        //AddTile('6', 6);
+        //AddTile('7', 6);
     }
 
 

@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,24 @@ namespace LetterDrop.Debug
 {    
     internal class DebugUtils
     {
+        static DebugUtils()
+        {
+            // Set the log file path and clear it
+            string path = "user://debug_log.txt";
+            LogFilePath = ProjectSettings.GlobalizePath(path);
+            System.IO.File.WriteAllText(LogFilePath, "");
+        }
+
         //-- ASSERTION
+
+        /// <summary>
+        /// Asserts that the given condition is true.
+        /// </summary>
+        /// <param name="condition">The condition to check</param>
+        public static void Assert(bool condition)
+        {
+            AssertTrue(condition);
+        }
 
         /// <summary>
         /// Asserts that the given condition is true.
@@ -31,5 +49,16 @@ namespace LetterDrop.Debug
             System.Diagnostics.Debug.Assert(!condition);
             return condition;
         }
+
+        public static void Log(string message)
+        {
+            // Print to godot
+            GD.Print(message);
+
+            // Print to logfile
+            System.IO.File.AppendAllText(LogFilePath, message + "\n");
+        }
+
+        public static readonly string LogFilePath;
     }
 }
