@@ -97,7 +97,13 @@ public partial class Field : Control
     /// <returns>True if the letter is valid; false otherwise</returns>
     public bool IsValidCharacter(char letter)
     {
-        return true; // letter >= 'A' && letter <= 'Z';
+        return letter >= 'A' && letter <= 'Z';
+    }
+
+    public bool CanSelectTile(int column, int tile)
+    {
+        // TODO implement
+        return true;
     }
 
 

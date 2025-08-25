@@ -59,7 +59,23 @@ public partial class Queue : Control
             }
         }
 
-        // TODO shuffle
+        // Shuffle the queue
+        var rng = new RandomNumberGenerator();
+        rng.Seed = 0; // TODO get random seed
+        for (int ii = LetterQueue.Count - 1; ii >= 1; ii--)
+        {
+            // Get a random index to swap with
+            int jj = (int)(rng.Randi() % ii);
+
+            // If the indices happen to be the same, nothing to do
+            if (ii == jj)
+            {
+                continue;
+            }
+
+            // Swap the values
+            (LetterQueue[ii], LetterQueue[jj]) = (LetterQueue[jj], LetterQueue[ii]);
+        }
     }
 
 

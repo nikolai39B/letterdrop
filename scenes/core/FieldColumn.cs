@@ -129,7 +129,7 @@ public partial class FieldColumn : Control
         else if (tile.TileState != FieldTile.State.Disabled)
         {
             // Deselect the tile
-            tile.TileState = FieldTile.State.Selected;
+            tile.TileState = FieldTile.State.Active;
 
             // TODO deselect 
         }

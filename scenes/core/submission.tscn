@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdsjtcbbch7dj"]
+
+[ext_resource type="Theme" uid="uid://l2vpsu13nluj" path="res://styles/base_theme.tres" id="1_6gyok"]
+
+[node name="Submission" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letters" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 695.0
+offset_bottom = 95.0
+theme = ExtResource("1_6gyok")
+text = "CAPYBARA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 105.0
+offset_right = 345.0
+offset_bottom = 170.0
+theme = ExtResource("1_6gyok")
+theme_type_variation = &"LetterLabelSmall"
+text = "12345"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Submit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 105.0
+offset_right = 695.0
+offset_bottom = 170.0
+theme = ExtResource("1_6gyok")
+theme_override_font_sizes/font_size = 32
+text = "Submit"

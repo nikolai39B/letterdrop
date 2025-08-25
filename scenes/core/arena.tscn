@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://78v1hu1c7mrt"]
+[gd_scene load_steps=6 format=3 uid="uid://78v1hu1c7mrt"]
 
 [ext_resource type="Script" uid="uid://cnk5yq21dsaf4" path="res://scenes/core/Arena.cs" id="1_11veh"]
 [ext_resource type="PackedScene" uid="uid://b78fyrmjui4ad" path="res://scenes/core/field.tscn" id="1_e05a3"]
 [ext_resource type="PackedScene" uid="uid://b33oqo6g6mfvf" path="res://scenes/background.tscn" id="1_wl4x5"]
 [ext_resource type="PackedScene" uid="uid://ihv3gi2xter0" path="res://scenes/core/queue.tscn" id="3_yvung"]
+[ext_resource type="PackedScene" uid="uid://cdsjtcbbch7dj" path="res://scenes/core/submission.tscn" id="5_mmaph"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_11veh")
@@ -18,3 +19,9 @@ offset_left = 1090.0
 offset_top = 200.0
 offset_right = 1090.0
 offset_bottom = 200.0
+
+[node name="Submission" parent="." instance=ExtResource("5_mmaph")]
+offset_left = 1090.0
+offset_top = 500.0
+offset_right = 1090.0
+offset_bottom = 500.0
