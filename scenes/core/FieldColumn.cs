@@ -41,10 +41,10 @@ public partial class FieldColumn : Control
 
     //-- TILES
 
-        /// <summary>
-        /// Returns whether the column capacity is filled with tiles.
-        /// </summary>
-        /// <returns>True if the column is full; false otherwise</returns>
+    /// <summary>
+    /// Returns whether the column capacity is filled with tiles.
+    /// </summary>
+    /// <returns>True if the column is full; false otherwise</returns>
     public bool IsFull()
     {
         return ActiveTilesCount >= Capacity;

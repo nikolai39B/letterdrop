@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "LetterDrop": {
+      "commandName": "Project"
+    },
+    "Debug": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Files\\Programming\\Godot\\Godot_v4.4.1-stable_mono_win64\\Godot_v4.4.1-stable_mono_win64.exe",
+      "commandLineArgs": "--verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}
