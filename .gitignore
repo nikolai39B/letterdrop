@@ -11,6 +11,7 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*
+Properties/
 
 # C# build artifacts
 *.csproj
