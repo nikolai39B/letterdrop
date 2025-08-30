@@ -69,25 +69,62 @@ public partial class Field : Control
     }
 
 
+    //-- COLUMNS
+
+    /// <summary>
+    /// Gets the number of the given column.
+    /// </summary>
+    /// <param name="column">The column</param>
+    /// <returns>The column number</returns>
+    public int GetColumnNumber(FieldColumn column)
+    {
+        return Columns.IndexOf(column);
+    }
+
+
     //-- TILES
+
+    /// <summary>
+    /// Gets the tile at the given column and tile number.
+    /// </summary>
+    /// <param name="cc">The column number</param>
+    /// <param name="tt">The tile number in the column</param>
+    /// <returns>The tile, or null if there is no tile</returns>
+    private FieldTile GetTile(int cc, int tt)
+    {
+        // Get the column
+        if (DebugUtils.AssertFalse(cc < 0 || cc >= NumColumns))
+        {
+            return null;
+        }
+        var column = Columns[cc];
+
+        // Get the tile
+        if (DebugUtils.AssertFalse(tt < 0 || tt >= column.ActiveTilesCount))
+        {
+            return null;
+        }
+        var tile = column.Tiles[tt];
+        return tile;
+    }
 
     /// <summary>
     /// Instantiates a tile with the given letter and adds it to the given column.
     /// </summary>
     /// <param name="letter">The tile's letter</param>
-    /// <param name="column">The tile's column</param>
+    /// <param name="cc">The tile's column</param>
     /// <returns>The newly created tile</returns>
-    public void AddTile(char letter, int column)
+    public void AddTile(char letter, int cc)
 	{
         // Validate
         if (DebugUtils.AssertFalse(!IsValidCharacter(letter)) ||
-            DebugUtils.AssertFalse(column >= NumColumns))
+            DebugUtils.AssertFalse(cc >= NumColumns))
         {
             return;
         }
 
         // Add the tile
-        Columns[column].DropTile(letter);
+        Columns[cc].DropTile(letter);
     }
 
     /// <summary>
@@ -100,10 +137,61 @@ public partial class Field : Control
         return letter >= 'A' && letter <= 'Z';
     }
 
-    public bool CanSelectTile(int column, int tile)
+    /// <summary>
+    /// Returns whether the given tile in the given column is selectable for word submission.
+    /// </summary>
+    /// <param name="cc">The column number</param>
+    /// <param name="tt">The tile number</param>
+    /// <returns></returns>
+    public bool CanSubmitTile(FieldTile tile)
     {
-        // TODO implement
+        // Validate
+        if (DebugUtils.AssertFalse(tile == null))
+        {
+            return false;
+        }
+
+        // If the tile is not active, it can't be submitted
+        if (tile.TileState != FieldTile.State.Active)
+        {
+            return false;
+        }
+
+        // If the submission is full, can't submit the tile
+        Submission submission = Arena.Instance.Submission;
+        if (submission.IsWordFull())
+        {
+            return false;
+        }
+
+        // If the submission is not empty, the tile is not submittable unless it is adjacent to the last selected tile
+        if (!submission.IsWordEmpty() && !AreTilesAdjacent(tile, submission.Tiles[submission.Tiles.Count - 1]))
+        {
+            return false;
+        }
+
         return true;
+    }
+
+    /// <summary>
+    /// Checks if the given tiles are adjacent.
+    /// </summary>
+    /// <param name="tile1">The first tile to check</param>
+    /// <param name="tile2">The second tile to check</param>
+    /// <returns>True if the tiles are adjacent; false otherwise</returns>
+    private bool AreTilesAdjacent(FieldTile tile1, FieldTile tile2)
+    {
+        // Check null and equality
+        if (tile1 == null || tile2 == null || tile1 == tile2)
+        {
+            return false;
+        }
+
+        // Handle same column
+        if (tile1.Column == tile2.Column)
+        {
+            int 
+        }
     }
 
 

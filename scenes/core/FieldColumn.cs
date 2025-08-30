@@ -38,13 +38,50 @@ public partial class FieldColumn : Control
         InitializeTiles();
     }
 
+    //-- CONFIGURATION
+    private void InitializeTiles()
+    {
+        // Populate the field with tiles
+        for (int ii = 0; ii < Capacity; ii++)
+        {
+            // Create and add the tile
+            FieldTile tile = FieldTile.Create();
+            if (DebugUtils.AssertFalse(tile == null))
+            {
+                continue;
+            }
+            AddTile(tile);
+
+            // Set a descriptive name
+            tile.Name = $"Tile{_totalTiles}";
+
+            // Configure the tile
+            tile.Letter = null;
+            tile.TileState = ii == 0 ? FieldTile.State.Pending : FieldTile.State.Disabled;
+
+            // Set the tile placement
+            Field field = Field;
+            tile.Position = new Vector2(field.GapSize, (Capacity - Tiles.Count) * field.TileSize + field.GapSize);
+        }
+    }
+
 
     //-- TILES
 
-        /// <summary>
-        /// Returns whether the column capacity is filled with tiles.
-        /// </summary>
-        /// <returns>True if the column is full; false otherwise</returns>
+    /// <summary>
+    /// Gets the number of the given tile.
+    /// </summary>
+    /// <param name="tile">The tile</param>
+    /// <returns>The tile number</returns>
+    public int GetTileNumber(FieldTile tile)
+    {
+        return Tiles.IndexOf(tile);
+    }
+
+    /// <summary>
+    /// Returns whether the column capacity is filled with tiles.
+    /// </summary>
+    /// <returns>True if the column is full; false otherwise</returns>
     public bool IsFull()
     {
         return ActiveTilesCount >= Capacity;
@@ -77,32 +114,6 @@ public partial class FieldColumn : Control
         }
     }
 
-    private void InitializeTiles()
-    {
-        // Populate the field with tiles
-        for (int ii = 0; ii < Capacity; ii++)
-        {
-            // Create and add the tile
-            FieldTile tile = FieldTile.Create();
-            if (DebugUtils.AssertFalse(tile == null))
-            {
-                continue;
-            }
-            AddTile(tile);
-
-            // Set a descriptive name
-            tile.Name = $"Tile{TotalTiles}";
-
-            // Configure the tile
-            tile.Letter = null;
-            tile.TileState = ii == 0 ? FieldTile.State.Pending : FieldTile.State.Disabled;
-
-            // Set the tile placement
-            Field field = Field;
-            tile.Position = new Vector2(field.GapSize, (Capacity - Tiles.Count) * field.TileSize + field.GapSize);
-        }
-    }
-
     private void OnTilePressed(FieldTile tile)
     {
         // Handle pending tiles
@@ -119,16 +130,18 @@ public partial class FieldColumn : Control
         // Handle active tiles
         else if (tile.TileState == FieldTile.State.Active)
         {
-            // Select the tile
-            tile.TileState = FieldTile.State.Selected;
+            // Submit the tile
+            Arena.Instance.Submission.AddTile(tile);
+            tile.TileState = FieldTile.State.Submitted;
 
             // TODO only if no tiles selected or if adjacent to a selected tile
         }
 
         // Handle selected tiles
-        else if (tile.TileState != FieldTile.State.Disabled)
+        else if (tile.TileState == FieldTile.State.Submitted)
         {
-            // Deselect the tile
+            // Desubmit the tile
+            Arena.Instance.Submission.RemoveTile(tile);
             tile.TileState = FieldTile.State.Active;
 
             // TODO deselect 
@@ -140,7 +153,7 @@ public partial class FieldColumn : Control
         // Add the child
         AddChild(tile);
         Tiles.Add(tile);
-        TotalTiles++;
+        _totalTiles++;
 
         //Action<>
         //
@@ -201,12 +214,15 @@ public partial class FieldColumn : Control
     private int _capacity;
 
 
-    //-- ATTRIBUTES
+    //-- COMPONENTS
 
     /// <summary>
     /// The parent field
     /// </summary>
     public Field Field { get => GetParent<Field>(); }
+
+
+    //-- ATTRIBUTES
 
     /// <summary>
     /// The stack of tiles in the column, ordered from the bottom of the column
@@ -226,5 +242,5 @@ public partial class FieldColumn : Control
     /// <summary>
     /// The total number of tiles dropped into the column since its creation
     /// </summary>
-    public int TotalTiles { get; private set; } = 0;
+    private int _totalTiles = 0;
 }

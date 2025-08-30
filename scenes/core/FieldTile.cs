@@ -13,11 +13,10 @@ public partial class FieldTile : Button
     public enum State
     {
         None,
-        Disabled,
-        Pending,
-        Active,
-        Hovered,
-        Selected
+        Disabled,  // Blank tile that cannot be interacted with
+        Pending,   // Blank tile that can be chosen for the next letter drop
+        Active,    // Letter tile that is not submitted
+        Submitted  // Letter tile that is submitted
     }
 
 
@@ -84,21 +83,11 @@ public partial class FieldTile : Button
     public const SceneType Type = SceneType.FIELD_TILE;
 
 
-    //-- ATTRIBUTES
+    //-- COMPONENTS
+    public FieldColumn Column { get => GetParent<FieldColumn>(); }
 
-    /// <summary>
-    /// The tile letter
-    /// </summary>
-    public char? Letter
-    {
-        get => _letter;
-        set 
-        {
-            _letter = value;
-            Text = _letter != null ? value.ToString() : "";
-        }
-    }
-    private char? _letter = null;
+
+    //-- EXPORT ATTRIBUTES
 
     /// <summary>
     /// The state of the tile
@@ -113,9 +102,6 @@ public partial class FieldTile : Button
             {
                 return;
             }
-
-            // Cache the old state and set the new state
-            State oldState = _tileState;
             _tileState = value;
 
             // Update the disabled state
@@ -147,11 +133,7 @@ public partial class FieldTile : Button
                     RemoveThemeStyleboxOverride("normal");
                     break;
 
-                case State.Hovered:
-                    RemoveThemeStyleboxOverride("hover");
-                    break;
-
-                case State.Selected:
+                case State.Submitted:
                     AddThemeStyleboxOverride("normal", GetThemeStylebox("pressed"));
                     break;
 
@@ -163,8 +145,20 @@ public partial class FieldTile : Button
     }
     public State _tileState = State.None;
 
+
+    //-- ATTRIBUTES
+
     /// <summary>
-    /// The parent column
+    /// The tile letter
     /// </summary>
-    public FieldColumn Column { get => GetParent<FieldColumn>(); }
+    public char? Letter
+    {
+        get => _letter;
+        set 
+        {
+            _letter = value;
+            Text = _letter != null ? value.ToString() : "";
+        }
+    }
+    private char? _letter = null;
 }

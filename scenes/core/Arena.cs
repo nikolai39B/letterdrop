@@ -23,9 +23,8 @@ public partial class Arena : Node2D
     public static Arena Instance { get; private set; }
 
 
-    //-- ATTRIBUTES
-
+    //-- COMPONENTS
     public Field Field { get { return GetNode<Field>("Field"); } }
-
     public Queue Queue { get { return GetNode<Queue>("Queue"); } }
+    public Submission Submission { get { return GetNode<Submission>("Submission"); } }
 }
