@@ -66,17 +66,29 @@ public partial class FieldColumn : Control
     }
 
 
-    //-- TILES
+    //-- ACCESSORS
 
     /// <summary>
-    /// Gets the number of the given tile.
+    /// Gets the number of the column in the parent field.
     /// </summary>
-    /// <param name="tile">The tile</param>
-    /// <returns>The tile number</returns>
-    public int GetTileNumber(FieldTile tile)
+    /// <returns>The column number</returns>
+    public int GetColumnNumber()
     {
-        return Tiles.IndexOf(tile);
+        return Field.Columns.IndexOf(this);
     }
+
+    /// <summary>
+    /// Returns whether the column is tall or short. Tall columns have one extra tile.
+    /// </summary>
+    /// <returns>True if the column is tall; false otherwise</returns>
+    public bool IsTallColumn()
+    {
+        DebugUtils.Assert(_capacity == Field.NumRows || _capacity == Field.NumRows + 1);
+        return _capacity == Field.NumRows + 1;
+    }
+
+
+    //-- TILES
 
     /// <summary>
     /// Returns whether the column capacity is filled with tiles.
@@ -114,39 +126,9 @@ public partial class FieldColumn : Control
         }
     }
 
-    private void OnTilePressed(FieldTile tile)
-    {
-        // Handle pending tiles
-        if (tile.TileState == FieldTile.State.Pending)
-        {
-            // Drop a tile from the queue
-            char? letter = Arena.Instance?.Queue?.PopNextTile();
-            if (letter != null)
-            {
-                DropTile(letter.Value);
-            }
-        }
-
-        // Handle active tiles
-        else if (tile.TileState == FieldTile.State.Active)
-        {
-            // Submit the tile
-            Arena.Instance.Submission.AddTile(tile);
-            tile.TileState = FieldTile.State.Submitted;
-
-            // TODO only if no tiles selected or if adjacent to a selected tile
-        }
-
-        // Handle selected tiles
-        else if (tile.TileState == FieldTile.State.Submitted)
-        {
-            // Desubmit the tile
-            Arena.Instance.Submission.RemoveTile(tile);
-            tile.TileState = FieldTile.State.Active;
-
-            // TODO deselect 
-        }
-    }
+    //private void OnTilePressed(FieldTile tile)
+    //{
+    //}
 
     private void AddTile(FieldTile tile)
     {
@@ -164,8 +146,8 @@ public partial class FieldColumn : Control
 
         // TODO: figure out the event handling here. This is not completely safe if the column gets destroyed before the tile (which probably won't happen but still...)
 
-        var err = tile.Connect(FieldTile.SignalName.Pressed, Callable.From(() => { OnTilePressed(tile); }));
-        var err2 = tile.Connect(FieldTile.SignalName.Pressed, Callable.From((int x) => { OnTilePressed(tile); return ""; }));
+        //var err = tile.Connect(FieldTile.SignalName.Pressed, Callable.From(() => { OnTilePressed(tile); }));
+        //var err2 = tile.Connect(FieldTile.SignalName.Pressed, Callable.From((int x) => { OnTilePressed(tile); return ""; }));
 
         //var t = tile.GetType();
         //var ev = t.GetEvent("Pressed");

@@ -56,8 +56,6 @@ public partial class FieldTile : Button
         PivotOffset = new Vector2(width / 2, width / 2);
     }
 
-
-    //-- OVERRIDES
     private void OnMouseEntered()
     {
         if (TileState == State.Pending)
@@ -76,6 +74,53 @@ public partial class FieldTile : Button
         {
             Text = "";
         }
+    }
+
+    private void OnPressed()
+    {
+        // Handle pending tiles
+        if (TileState == FieldTile.State.Pending)
+        {
+            // Drop a tile from the queue
+            char? letter = Arena.Instance.Queue.PopNextTile();
+            if (letter == null)
+            {
+                return;
+            }
+            Column.DropTile(letter.Value);
+        }
+
+        // Handle active tiles
+        else if (TileState == FieldTile.State.Active)
+        {
+            // If the tile isn't submittable, do nothing
+            if (!Arena.Instance.CanSubmitTile(this))
+            {
+                return;
+            }
+
+            // Submit the tile
+            Arena.Instance.SubmitTile(this);
+        }
+
+        // Handle selected tiles
+        else if (TileState == FieldTile.State.Submitted)
+        {
+            // Desubmit the tile
+            Arena.Instance.UnsubmitTile(this);
+        }
+    }
+
+
+    //-- ACCESSORS
+
+    /// <summary>
+    /// Gets the number of the tile in the parent column.
+    /// </summary>
+    /// <returns>The tile number</returns>
+    public int GetTileNumber()
+    {
+        return Column.Tiles.IndexOf(this);
     }
 
 
@@ -98,10 +143,14 @@ public partial class FieldTile : Button
         get => _tileState;
         set
         {
+            // If the state is already set, nothing to do
             if (_tileState == value)
             {
                 return;
             }
+
+            // Cache the old tile state and set the new tile state
+            State oldTileState = _tileState;
             _tileState = value;
 
             // Update the disabled state
@@ -118,19 +167,25 @@ public partial class FieldTile : Button
                 FocusMode = focusMode;
             }
 
-            // Configure the pending stylebox as necessary
+            // Remove style overrides as necessary
+            switch (oldTileState)
+            {
+                case State.Pending:
+                    RemoveThemeStyleboxOverride("normal");
+                    RemoveThemeStyleboxOverride("hover");
+                    break;
+
+                case State.Submitted:
+                    RemoveThemeStyleboxOverride("normal");
+                    break;
+            }
+
+            // Add style overrides as necessary
             switch (_tileState)
             {
-                case State.Disabled:
-                    RemoveThemeStyleboxOverride("disabled");
-                    break;
-
                 case State.Pending:
                     AddThemeStyleboxOverride("normal", GetThemeStylebox("pending"));
-                    break;
-
-                case State.Active:
-                    RemoveThemeStyleboxOverride("normal");
+                    AddThemeStyleboxOverride("hover", GetThemeStylebox("pending"));
                     break;
 
                 case State.Submitted:

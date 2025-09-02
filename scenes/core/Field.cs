@@ -69,19 +69,6 @@ public partial class Field : Control
     }
 
 
-    //-- COLUMNS
-
-    /// <summary>
-    /// Gets the number of the given column.
-    /// </summary>
-    /// <param name="column">The column</param>
-    /// <returns>The column number</returns>
-    public int GetColumnNumber(FieldColumn column)
-    {
-        return Columns.IndexOf(column);
-    }
-
-
     //-- TILES
 
     /// <summary>
@@ -138,48 +125,12 @@ public partial class Field : Control
     }
 
     /// <summary>
-    /// Returns whether the given tile in the given column is selectable for word submission.
-    /// </summary>
-    /// <param name="cc">The column number</param>
-    /// <param name="tt">The tile number</param>
-    /// <returns></returns>
-    public bool CanSubmitTile(FieldTile tile)
-    {
-        // Validate
-        if (DebugUtils.AssertFalse(tile == null))
-        {
-            return false;
-        }
-
-        // If the tile is not active, it can't be submitted
-        if (tile.TileState != FieldTile.State.Active)
-        {
-            return false;
-        }
-
-        // If the submission is full, can't submit the tile
-        Submission submission = Arena.Instance.Submission;
-        if (submission.IsWordFull())
-        {
-            return false;
-        }
-
-        // If the submission is not empty, the tile is not submittable unless it is adjacent to the last selected tile
-        if (!submission.IsWordEmpty() && !AreTilesAdjacent(tile, submission.Tiles[submission.Tiles.Count - 1]))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /// <summary>
     /// Checks if the given tiles are adjacent.
     /// </summary>
     /// <param name="tile1">The first tile to check</param>
     /// <param name="tile2">The second tile to check</param>
     /// <returns>True if the tiles are adjacent; false otherwise</returns>
-    private bool AreTilesAdjacent(FieldTile tile1, FieldTile tile2)
+    public bool AreTilesAdjacent(FieldTile tile1, FieldTile tile2)
     {
         // Check null and equality
         if (tile1 == null || tile2 == null || tile1 == tile2)
@@ -187,11 +138,36 @@ public partial class Field : Control
             return false;
         }
 
+        // Get the tile numbers
+        int tt1 = tile1.GetTileNumber();
+        int tt2 = tile2.GetTileNumber();
+
         // Handle same column
         if (tile1.Column == tile2.Column)
         {
-            int 
+            return Math.Abs(tt1 - tt2) == 1;
         }
+
+        // Handle adjacent columns
+        int cc1 = tile1.Column.GetColumnNumber();
+        int cc2 = tile2.Column.GetColumnNumber();
+        if (Math.Abs(cc1 - cc2) == 1)
+        {
+            // Since the columns are adjacent, one should be short and one should be long - determine which is which
+            if (DebugUtils.AssertFalse(tile1.Column.IsTallColumn() == tile2.Column.IsTallColumn()))
+            {
+                return false;
+            }
+            (int ttLong, int ttShort) = tile1.Column.IsTallColumn() ? (tt1, tt2) : (tt2, tt1);
+
+            // The tiles are adjacent if one of the following is true:
+            //   - short column tile number == long column tile number
+            //   - short column tile number == long column tile number + 1
+            return ttShort == ttLong || ttShort == ttLong + 1;
+        }
+
+        // If we get here, the tiles aren't adjacent
+        return false;
     }
 
 

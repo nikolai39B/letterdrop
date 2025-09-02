@@ -11,3 +11,6 @@ theme = ExtResource("1_rp2xm")
 theme_type_variation = &"LetterButton"
 text = "W"
 script = ExtResource("3_jy7pm")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
